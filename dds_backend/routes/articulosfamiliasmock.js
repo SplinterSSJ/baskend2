@@ -56,5 +56,15 @@ router.get('/api/articulosfamiliasmock/:id', async function(req, res) {
     else res.status(404).json({ message: 'articulofamilia no encontrado' });
 });
 
+router.post('/api/articulosfamiliasmock/', (req, res) => {
+  const { Nombre } = req.body;
+  let articuloFamilia = {
+    Nombre,
+    IdArticuloFamilia: Math.floor(Math.random()*100000),
+  };
+
+  //agregar a la coleccion
+  arr_ArticulosFamiliasMock.push(articuloFamilia);
+});
 module.exports = router;
 

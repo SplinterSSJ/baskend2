@@ -3,6 +3,8 @@ const express = require("express");
 //crear servidor
 const app = express();
 
+app.use(express.json()); //para poder leer json en el body
+
 //controlar ruta 
 app.get("/", (req, res) => {
     res.send("Baceknd inicial dds-baceknd!");

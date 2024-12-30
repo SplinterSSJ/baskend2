@@ -65,6 +65,37 @@ router.post('/api/articulosfamiliasmock/', (req, res) => {
 
   //agregar a la coleccion
   arr_ArticulosFamiliasMock.push(articuloFamilia);
+  res.status(201).json(articuloFamilia);
 });
+
+router.put('/api/articulosfamiliasmock/:id', (req, res) => {
+  let articuloFamilia = arr_ArticulosFamiliasMock.find(
+    (x) => x.IdArticuloFamilia == req.params.id
+  );
+
+  if (articuloFamilia) {
+    const { Nombre } = req.body;
+    articuloFamilia.Nombre = Nombre;
+    res.json({ message: 'articulofamilia actualizando' });
+  } else {
+    res.status(404).json({ message: 'articulofamilia no encontrado' })
+  }
+});
+
+router.delete('/api/articulosfamiliasmock/:id', (req, res) => {
+  let articuloFamilia = arr_ArticulosFamiliasMock.find(
+    (x) => x.IdArticuloFamlia == req.params.id
+  );
+
+  if (articuloFamilia) {
+    arr_ArticulosFamiliasMock = arr_ArticulosFamiliasMock.filter(
+      (x) => x.IdArticulosFamilia != req.params.id
+    );
+    res.json({ mesagge: 'articulofamilia eliminado' });
+  } else {
+    res.status(404).json({ message: 'articulofamilia no encontrao' })
+  }
+})
+
 module.exports = router;
 

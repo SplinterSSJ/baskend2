@@ -2,6 +2,7 @@ const express = require("express");
 
 //crear servidor
 const app = express();
+app.use(express.json()); //para leer json en el body
 
 app.use(express.json()); //para poder leer json en el body
 

@@ -2,8 +2,9 @@ const express = require("express");
 
 //crear servidor
 const app = express();
-app.use(express.json()); //para leer json en el body
 
+require("./base-orm/sqlite-init"); //crear base si no existe
+app.use(express.json()); //para leer json en el body
 app.use(express.json()); //para poder leer json en el body
 
 //controlar ruta 

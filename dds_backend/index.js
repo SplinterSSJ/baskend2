@@ -20,3 +20,6 @@ app.listen(port, () => {
 
 const articulosfamiliasmockRouter = require("./routes/articulosfamiliasmock");
 app.use(articulosfamiliasmockRouter);
+
+const articulosfamiliasRouter = require("./routes/articulosfamilias");
+app.use(articulosfamiliasRouter);

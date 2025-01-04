@@ -1,9 +1,9 @@
-const express = requiere("express");
+const express = require("express");
 const router = express.Router();
 
 const db = require("../base-orm/sequelize-init");
 
-router.get("/api/articulosfamiloas", async function (req, res, next){
+router.get("/api/articulosfamilias", async function (req, res, next){
     let data = await db.articulosfamilias.findAll({
         attributes: ["IdArticulofamilia", "Nombre"],
     });

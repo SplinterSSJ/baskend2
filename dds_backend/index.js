@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
     res.send("Baceknd inicial dds-baceknd!");
 });
 
+//vincular controlador con la aplicacion express
+const articulosfamiliasRouter = require("./routes/articulosfamilias");
+app.use(articulosfamiliasRouter);
+
 //levantar servidor
 const port = 3000;
 app.listen(port, () => {
@@ -20,6 +24,3 @@ app.listen(port, () => {
 
 const articulosfamiliasmockRouter = require("./routes/articulosfamiliasmock");
 app.use(articulosfamiliasmockRouter);
-
-const articulosfamiliasRouter = require("./routes/articulosfamilias");
-app.use(articulosfamiliasRouter);

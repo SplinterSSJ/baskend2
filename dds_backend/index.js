@@ -16,6 +16,17 @@ app.get("/", (req, res) => {
 const articulosfamiliasRouter = require("./routes/articulosfamilias");
 app.use(articulosfamiliasRouter);
 
+const articulosRouter = require("./routes/articulos");
+app.use(articulosRouter);
+
+//cofigurar servidor
+const cors = require("cors");
+app.use(
+    cors({
+        origin: "*", // origin: 'https://dds-frontend.azurewebsites.net'
+    })
+);
+
 //levantar servidor
 const port = 3000;
 app.listen(port, () => {

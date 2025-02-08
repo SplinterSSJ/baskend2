@@ -84,4 +84,30 @@ router.post("/api/token", (req, res) => {
         });
     });
 });
+
+router.get(
+    "api/articulosJWT",
+    auth.authenticateJWT,
+    async function (req, res, next) {
+        const { rol } = res.locals.user;
+        if (rol !== "admin") {
+            return res.status(403).json({ message: "usuario no autorizado!" });  
+        }
+        let items = await db.articulos.findAll({
+            attributes: [
+                "IdArticulo",
+                "Nombre",
+                "Precio",
+                "CodigoDeBarra",
+                "IdArticuloFamilia",
+                "Stock",
+                "FechaAlta",
+                "Activo",
+            ],
+            order: [["Nombre", "ASC"]],
+        });
+        res.json(items);
+    }
+);
+
 module.exports = router;

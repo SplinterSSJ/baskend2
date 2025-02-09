@@ -22,4 +22,4 @@ const authenticateJWT = (req, res, next) => {
         res.status(401).json({ message: "Acceso denegado" });
     }
 };
-module.exports = { authenticateJWT, accesTokenSecret, refreshTokenSecret }; 
+module.exports = { authenticateJWT, accessTokenSecret, refreshTokenSecret }; 

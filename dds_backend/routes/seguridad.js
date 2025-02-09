@@ -1,9 +1,9 @@
-const ecpress = required("express");
+const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const auth = require("../seguridad/auth");
 
-const user = [
+const users = [
     {
         usuario: "admin",
         clave: "123",
@@ -21,8 +21,11 @@ router.post("/api/login", (req, res) => {
     // #swagger.tags = ['Seguridad']
     // #swagger.summary = 'Login de usuarios: admin:123(rol administrador), juan:123(rol miembro)'
     const { usuario, clave } = req.body;
+
+    console.log("Usuario recibido:", usuario);//deputacion
+    console.log("Clave recibida:", clave);//depuracion
     //Filter user from the users array by usuario and clave
-    const user = user.find((u) => {
+    const user = users.find((u) => {
         return u.usuario === usuario && u.clave === clave;
     });
     if (user) {
@@ -67,7 +70,7 @@ router.post("/api/token", (req, res) => {
     if (!refreshToken) {
         return res.sendStatus(401);
     }
-    if (!refreshToken.includes(refreshToken)){
+    if (!refreshTokens.includes(refreshToken)){
         return refreshToken.sendStatus(403);
     }
     jwt.verify(refreshToken, auth.refreshTokenSecret, (err, user) => {

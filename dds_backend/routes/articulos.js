@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../base-orm/sequelize-init");
 const { Op, ValidationError } = require("sequelize");
+const auth = require("../seguridad/auth");
 
 router.get("/api/articulos", async function (req, res, next){
     //#swagger.tags = ['Articulos']

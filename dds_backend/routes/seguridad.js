@@ -22,8 +22,6 @@ router.post("/api/login", (req, res) => {
     // #swagger.summary = 'Login de usuarios: admin:123(rol administrador), juan:123(rol miembro)'
     const { usuario, clave } = req.body;
 
-    console.log("Usuario recibido:", usuario);//deputacion
-    console.log("Clave recibida:", clave);//depuracion
     //Filter user from the users array by usuario and clave
     const user = users.find((u) => {
         return u.usuario === usuario && u.clave === clave;
@@ -71,7 +69,7 @@ router.post("/api/token", (req, res) => {
         return res.sendStatus(401);
     }
     if (!refreshTokens.includes(refreshToken)){
-        return refreshToken.sendStatus(403);
+        return res.sendStatus(403);
     }
     jwt.verify(refreshToken, auth.refreshTokenSecret, (err, user) => {
         if (err) {
@@ -89,7 +87,7 @@ router.post("/api/token", (req, res) => {
 });
 
 router.get(
-    "api/articulosJWT",
+    "/api/articulosJWT",
     auth.authenticateJWT,
     async function (req, res, next) {
         const { rol } = res.locals.user;
